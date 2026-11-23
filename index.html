@@ -1,0 +1,418 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Persiapan TOEFL Intensif</title>
+  
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['"Inter"', '-apple-system', 'BlinkMacSystemFont', 'sans-serif'],
+            mono: ['"JetBrains Mono"', 'ui-monospace', 'monospace'],
+          }
+        }
+      }
+    }
+  </script>
+
+  <!-- Google Fonts & FontAwesome -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  
+  <!-- Custom Styles -->
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body class="bg-[#fafafa] text-[#171717] dark:bg-[#141415] dark:text-[#ededed] min-h-screen flex flex-col font-sans antialiased text-sm">
+
+  <!-- ====================================================================== -->
+  <!-- NAVIGATION BAR (QUIET CHROME) -->
+  <!-- ====================================================================== -->
+  <header class="border-b border-slate-200 dark:border-slate-800 bg-white dark:bg-[#19191b] sticky top-0 z-40">
+    <div class="max-w-5xl mx-auto px-4 h-14 flex items-center justify-between">
+      
+      <!-- Brand -->
+      <div class="flex items-center gap-3 cursor-pointer" onclick="switchTab('dashboard')">
+        <span class="w-7 h-7 rounded border border-slate-300 dark:border-slate-700 flex items-center justify-center font-mono font-medium text-xs text-slate-800 dark:text-slate-200">
+          TF
+        </span>
+        <span class="font-medium text-sm text-slate-900 dark:text-white">TOEFL Prep</span>
+        <span class="text-[11px] font-mono text-slate-500 border-l border-slate-200 dark:border-slate-800 pl-3 hidden sm:inline">Persiapan Terarah</span>
+      </div>
+
+      <!-- Center Tabs -->
+      <nav class="hidden md:flex items-center gap-1">
+        <button data-target-tab="dashboard" class="px-3 py-1.5 text-xs font-medium rounded text-slate-900 dark:text-white bg-slate-100 dark:bg-slate-800 transition-colors">
+          Ringkasan
+        </button>
+        <button data-target-tab="cheatsheet" class="px-3 py-1.5 text-xs font-medium rounded text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white transition-colors">
+          Pola dan Aturan
+        </button>
+        <button data-target-tab="drill" class="px-3 py-1.5 text-xs font-medium rounded text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white transition-colors">
+          Latihan Terbimbing
+        </button>
+        <button data-target-tab="exam" class="px-3 py-1.5 text-xs font-medium rounded text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white transition-colors">
+          Simulasi Ujian
+        </button>
+      </nav>
+
+      <!-- Right Controls -->
+      <div class="flex items-center gap-2">
+        <button id="theme-toggle" class="w-8 h-8 rounded border border-slate-200 dark:border-slate-800 flex items-center justify-center hover:bg-slate-50 dark:hover:bg-slate-800 transition-colors" title="Ganti tema">
+          <i id="theme-icon" class="fa-regular fa-moon text-xs text-slate-600"></i>
+        </button>
+
+        <button onclick="switchTab('exam')" class="px-3 py-1.5 text-xs font-medium rounded bg-slate-900 text-white dark:bg-slate-100 dark:text-slate-900 hover:bg-slate-800 dark:hover:bg-slate-200 transition-colors hidden sm:inline-block">
+          Mulai Ujian
+        </button>
+
+        <!-- Mobile menu toggle -->
+        <button id="mobile-menu-btn" class="md:hidden w-8 h-8 rounded border border-slate-200 dark:border-slate-800 flex items-center justify-center text-slate-600 dark:text-slate-300">
+          <i class="fa-solid fa-bars text-xs"></i>
+        </button>
+      </div>
+    </div>
+
+    <!-- Mobile Navigation Drawer -->
+    <div id="mobile-menu" class="hidden md:hidden border-t border-slate-200 dark:border-slate-800 px-4 py-2 space-y-1 bg-white dark:bg-[#19191b]">
+      <button data-target-tab="dashboard" class="w-full text-left px-3 py-2 rounded text-xs font-medium hover:bg-slate-50 dark:hover:bg-slate-800">Ringkasan</button>
+      <button data-target-tab="cheatsheet" class="w-full text-left px-3 py-2 rounded text-xs font-medium hover:bg-slate-50 dark:hover:bg-slate-800">Pola dan Aturan</button>
+      <button data-target-tab="drill" class="w-full text-left px-3 py-2 rounded text-xs font-medium hover:bg-slate-50 dark:hover:bg-slate-800">Latihan Terbimbing</button>
+      <button data-target-tab="exam" class="w-full text-left px-3 py-2 rounded text-xs font-medium hover:bg-slate-50 dark:hover:bg-slate-800">Simulasi Ujian</button>
+    </div>
+  </header>
+
+  <!-- ====================================================================== -->
+  <!-- MAIN CONTAINER -->
+  <!-- ====================================================================== -->
+  <main class="flex-1 max-w-5xl w-full mx-auto px-4 py-8">
+
+    <!-- ------------------------------------------------------------------ -->
+    <!-- VIEW 1: DASHBOARD -->
+    <!-- ------------------------------------------------------------------ -->
+    <section id="view-dashboard" class="space-y-6">
+      
+      <!-- Quiet Header Banner -->
+      <div class="border border-slate-200 dark:border-slate-800 rounded-lg p-6 bg-white dark:bg-[#19191b]">
+        <div class="max-w-2xl space-y-3">
+          <div class="text-[11px] font-mono text-slate-500">Persiapan H-1</div>
+          <h1 class="text-xl font-medium tracking-tight text-slate-900 dark:text-white">
+            Panduan Pola Kalimat dan Simulasi Ujian TOEFL
+          </h1>
+          <p class="text-xs text-slate-600 dark:text-slate-400 leading-relaxed">
+            Struktur soal TOEFL ITP berulang pada pola gramatikal dan frasa percakapan tertentu. Modul ini menyajikan ringkasan aturan inti serta 30 butir soal latihan terkalibrasi untuk memantapkan pemahaman sebelum ujian.
+          </p>
+
+          <div class="pt-2 flex flex-wrap gap-2">
+            <button onclick="switchTab('cheatsheet')" class="px-3.5 py-2 rounded text-xs font-medium bg-slate-900 text-white dark:bg-slate-100 dark:text-slate-900 hover:bg-slate-800 dark:hover:bg-slate-200 transition-colors">
+              Pelajari Pola Kalimat
+            </button>
+            <button onclick="switchTab('exam')" class="px-3.5 py-2 rounded text-xs font-medium border border-slate-300 dark:border-slate-700 text-slate-700 dark:text-slate-300 hover:bg-slate-50 dark:hover:bg-slate-800 transition-colors">
+              Simulasi Ujian Mandiri
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Functional Section Cards -->
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+        <div onclick="switchTab('cheatsheet')" class="border border-slate-200 dark:border-slate-800 rounded-lg p-5 bg-white dark:bg-[#19191b] cursor-pointer hover:border-slate-300 dark:hover:border-slate-700 transition-colors">
+          <div class="text-xs font-mono text-slate-500 mb-1">01 / Panduan</div>
+          <h3 class="font-medium text-sm text-slate-900 dark:text-white mb-1.5">Pola dan Aturan Soal</h3>
+          <p class="text-xs text-slate-600 dark:text-slate-400 leading-relaxed mb-3">
+            Rangkuman rumus subjek-predikat, kalimat pasif, kata hubung, dan teknik mendengarkan pembicara kedua.
+          </p>
+          <span class="text-xs font-medium text-blue-600 dark:text-blue-400">Buka panduan &rarr;</span>
+        </div>
+
+        <div onclick="switchTab('drill')" class="border border-slate-200 dark:border-slate-800 rounded-lg p-5 bg-white dark:bg-[#19191b] cursor-pointer hover:border-slate-300 dark:hover:border-slate-700 transition-colors">
+          <div class="text-xs font-mono text-slate-500 mb-1">02 / Latihan</div>
+          <h3 class="font-medium text-sm text-slate-900 dark:text-white mb-1.5">Latihan Terbimbing</h3>
+          <p class="text-xs text-slate-600 dark:text-slate-400 leading-relaxed mb-3">
+            Pengerjaan soal mandiri tanpa batasan waktu dengan kunci jawaban dan analisis struktur secara instan.
+          </p>
+          <span class="text-xs font-medium text-blue-600 dark:text-blue-400">Mulai latihan &rarr;</span>
+        </div>
+
+        <div onclick="switchTab('exam')" class="border border-slate-200 dark:border-slate-800 rounded-lg p-5 bg-white dark:bg-[#19191b] cursor-pointer hover:border-slate-300 dark:hover:border-slate-700 transition-colors">
+          <div class="text-xs font-mono text-slate-500 mb-1">03 / Evaluasi</div>
+          <h3 class="font-medium text-sm text-slate-900 dark:text-white mb-1.5">Simulasi Ujian Lengkap</h3>
+          <p class="text-xs text-slate-600 dark:text-slate-400 leading-relaxed mb-3">
+            30 butir soal berbobot dengan penghitung waktu 30 menit serta estimasi skor akhir skala 310 - 677.
+          </p>
+          <span class="text-xs font-medium text-blue-600 dark:text-blue-400">Buka simulasi &rarr;</span>
+        </div>
+      </div>
+
+      <!-- Dataset Metrics -->
+      <div id="dashboard-stats"></div>
+
+      <!-- Academic Principles -->
+      <div class="border border-slate-200 dark:border-slate-800 rounded-lg p-5 bg-white dark:bg-[#19191b]">
+        <div class="font-medium text-xs uppercase tracking-wider text-slate-500 mb-3">Strategi Pengerjaan Soal</div>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-4 text-xs">
+          <div class="space-y-1.5">
+            <strong class="font-medium text-slate-900 dark:text-white block">1. Listening Comprehension</strong>
+            <p class="text-slate-600 dark:text-slate-400 leading-relaxed">
+              Fokuskan perhatian utama pada pernyataan pembicara kedua. Hindari opsi yang mengandung kata berbunyi identik dengan audio, karena umumnya jawaban benar dinyatakan melalui sinonim.
+            </p>
+          </div>
+          <div class="space-y-1.5">
+            <strong class="font-medium text-slate-900 dark:text-white block">2. Structure & Expression</strong>
+            <p class="text-slate-600 dark:text-slate-400 leading-relaxed">
+              Identifikasi keberadaan subjek dan kata kerja utama sebelum memilih jawaban. Abaikan frasa keterangan preposisional untuk memeriksa kesesuaian gramatikal inti.
+            </p>
+          </div>
+          <div class="space-y-1.5">
+            <strong class="font-medium text-slate-900 dark:text-white block">3. Reading Comprehension</strong>
+            <p class="text-slate-600 dark:text-slate-400 leading-relaxed">
+              Baca pertanyaan sebelum membaca teks bacaan. Gunakan teknik pemindaian (scanning) untuk menemukan kata kunci berupa istilah teknis, nama, atau angka secara langsung.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <!-- History Container -->
+      <div class="border border-slate-200 dark:border-slate-800 rounded-lg p-5 bg-white dark:bg-[#19191b]">
+        <div class="flex items-center justify-between mb-3">
+          <span class="font-medium text-xs text-slate-900 dark:text-white">Riwayat Simulasi Terakhir</span>
+          <span class="text-[11px] font-mono text-slate-400">Tersimpan lokal</span>
+        </div>
+        <div id="dashboard-history" class="space-y-2"></div>
+      </div>
+    </section>
+
+    <!-- ------------------------------------------------------------------ -->
+    <!-- VIEW 2: CHEATSHEET -->
+    <!-- ------------------------------------------------------------------ -->
+    <section id="view-cheatsheet" class="hidden space-y-6">
+      <div class="border border-slate-200 dark:border-slate-800 rounded-lg p-6 bg-white dark:bg-[#19191b]">
+        
+        <div class="mb-5 pb-4 border-b border-slate-100 dark:border-slate-800">
+          <h2 class="text-lg font-medium text-slate-900 dark:text-white">Rangkuman Pola dan Aturan TOEFL</h2>
+          <p class="text-xs text-slate-500 mt-1">Struktur acuan baku yang paling sering diujikan pada sesi Listening, Structure, dan Reading.</p>
+        </div>
+
+        <div class="flex flex-wrap gap-1.5 mb-6 text-xs font-medium">
+          <a href="#cheat-listening" class="px-2.5 py-1 rounded bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 hover:text-slate-900">Listening</a>
+          <a href="#cheat-structure" class="px-2.5 py-1 rounded bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 hover:text-slate-900">Structure & Expression</a>
+          <a href="#cheat-reading" class="px-2.5 py-1 rounded bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 hover:text-slate-900">Reading</a>
+          <a href="#cheat-vocab" class="px-2.5 py-1 rounded bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 hover:text-slate-900">Kosakata Akademik</a>
+        </div>
+
+        <!-- 1. Listening -->
+        <div id="cheat-listening" class="space-y-3 mb-8">
+          <div class="text-xs font-mono text-slate-500 uppercase">Bagian 1 &bull; Listening Comprehension</div>
+          <div id="listening-cheats" class="grid grid-cols-1 md:grid-cols-2 gap-3"></div>
+        </div>
+
+        <!-- 2. Structure -->
+        <div id="cheat-structure" class="space-y-3 mb-8">
+          <div class="text-xs font-mono text-slate-500 uppercase">Bagian 2 &bull; Structure & Written Expression</div>
+          <div id="structure-cheats" class="grid grid-cols-1 md:grid-cols-2 gap-3"></div>
+        </div>
+
+        <!-- 3. Reading -->
+        <div id="cheat-reading" class="space-y-3 mb-8">
+          <div class="text-xs font-mono text-slate-500 uppercase">Bagian 3 &bull; Reading Comprehension</div>
+          <div id="reading-cheats" class="grid grid-cols-1 md:grid-cols-2 gap-3"></div>
+        </div>
+
+        <!-- 4. Vocabulary -->
+        <div id="cheat-vocab" class="space-y-3">
+          <div class="flex items-center justify-between gap-3">
+            <span class="text-xs font-mono text-slate-500 uppercase">Bagian 4 &bull; 24 Kosakata Akademik Pilihan</span>
+            <input type="text" id="vocab-search" placeholder="Cari kata atau arti..." class="px-2.5 py-1 text-xs rounded border border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-slate-800 w-48 focus:outline-none focus:border-slate-400">
+          </div>
+          <div id="vocabulary-container" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ------------------------------------------------------------------ -->
+    <!-- VIEW 3: DRILL -->
+    <!-- ------------------------------------------------------------------ -->
+    <section id="view-drill" class="hidden space-y-4">
+      <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 pb-3 border-b border-slate-200 dark:border-slate-800">
+        <div>
+          <h2 class="text-base font-medium text-slate-900 dark:text-white">Latihan Mandiri Terbimbing</h2>
+          <p class="text-xs text-slate-500">Pengerjaan soal dengan penjelasan pola gramatikal secara langsung.</p>
+        </div>
+
+        <div class="flex items-center gap-1 font-mono text-xs">
+          <button data-drill-cat="all" onclick="filterDrill('all')" class="drill-filter-btn px-3 py-1.5 rounded bg-slate-900 text-white dark:bg-slate-100 dark:text-slate-900">Semua</button>
+          <button data-drill-cat="listening" onclick="filterDrill('listening')" class="drill-filter-btn px-3 py-1.5 rounded text-slate-600 dark:text-slate-400 hover:text-slate-900">Listening</button>
+          <button data-drill-cat="structure" onclick="filterDrill('structure')" class="drill-filter-btn px-3 py-1.5 rounded text-slate-600 dark:text-slate-400 hover:text-slate-900">Structure</button>
+          <button data-drill-cat="reading" onclick="filterDrill('reading')" class="drill-filter-btn px-3 py-1.5 rounded text-slate-600 dark:text-slate-400 hover:text-slate-900">Reading</button>
+        </div>
+      </div>
+
+      <div class="flex items-center justify-between text-xs text-slate-500 font-mono">
+        <span id="drill-counter">Soal 1 dari 30</span>
+      </div>
+
+      <div id="drill-card-container"></div>
+    </section>
+
+    <!-- ------------------------------------------------------------------ -->
+    <!-- VIEW 4: EXAM -->
+    <!-- ------------------------------------------------------------------ -->
+    <section id="view-exam" class="hidden space-y-4">
+
+      <!-- Welcome Panel -->
+      <div id="exam-welcome-panel" class="max-w-xl mx-auto border border-slate-200 dark:border-slate-800 rounded-lg p-6 bg-white dark:bg-[#19191b] space-y-5 text-left">
+        <div>
+          <div class="text-[11px] font-mono text-slate-500 mb-1">Simulasi Ujian Mandiri</div>
+          <h2 class="text-base font-medium text-slate-900 dark:text-white">Format Ujian TOEFL ITP (30 Butir)</h2>
+          <p class="text-xs text-slate-600 dark:text-slate-400 mt-1 leading-relaxed">
+            Simulasi terdiri atas 10 butir soal Listening dengan audio penutur asli, 15 butir soal Structure dan Written Expression, serta 5 butir soal Reading Comprehension.
+          </p>
+        </div>
+
+        <div class="grid grid-cols-3 gap-3 border border-slate-200 dark:border-slate-800 p-3 rounded text-xs font-mono">
+          <div>
+            <span class="text-slate-400 block text-[10px]">Jumlah Soal</span>
+            <strong class="text-slate-800 dark:text-slate-200 font-medium">30 Butir</strong>
+          </div>
+          <div>
+            <span class="text-slate-400 block text-[10px]">Waktu</span>
+            <strong class="text-slate-800 dark:text-slate-200 font-medium">30 Menit</strong>
+          </div>
+          <div>
+            <span class="text-slate-400 block text-[10px]">Rentang Skor</span>
+            <strong class="text-slate-800 dark:text-slate-200 font-medium">310 - 677</strong>
+          </div>
+        </div>
+
+        <div class="text-xs text-slate-600 dark:text-slate-400 space-y-1">
+          <div>• Pastikan volume perangkat aktif untuk sesi Listening Comprehension.</div>
+          <div>• Setiap butir soal hanya memiliki satu opsi jawaban yang benar.</div>
+          <div>• Penilaian akhir akan menghitung akurasi per sesi dan estimasi skor terkonversi.</div>
+        </div>
+
+        <button onclick="startExam()" class="w-full py-2.5 bg-slate-900 hover:bg-slate-800 text-white dark:bg-slate-100 dark:text-slate-900 dark:hover:bg-slate-200 rounded font-medium text-xs transition-colors">
+          Mulai Pengerjaan Ujian
+        </button>
+      </div>
+
+      <!-- Active Exam Screen -->
+      <div id="exam-active-panel" class="hidden space-y-4">
+        
+        <!-- Header Bar -->
+        <div class="border border-slate-200 dark:border-slate-800 rounded-lg p-3 bg-white dark:bg-[#19191b] flex items-center justify-between text-xs">
+          <div>
+            <span id="exam-q-number" class="font-mono text-slate-500">Nomor 1 dari 30</span>
+            <span class="mx-2 text-slate-300">|</span>
+            <span id="exam-q-section" class="font-medium text-slate-900 dark:text-white">Section 1: Listening</span>
+          </div>
+
+          <div class="flex items-center gap-4">
+            <div class="font-mono text-slate-700 dark:text-slate-300">
+              Sisa waktu: <span id="exam-timer" class="font-medium text-slate-900 dark:text-white">30:00</span>
+            </div>
+            <button onclick="confirmSubmitExam()" class="px-2.5 py-1 rounded border border-slate-300 dark:border-slate-700 hover:bg-slate-50 dark:hover:bg-slate-800 text-slate-700 dark:text-slate-300 text-xs transition-colors">
+              Kumpulkan
+            </button>
+          </div>
+        </div>
+
+        <!-- 2 Column Layout -->
+        <div class="grid grid-cols-1 lg:grid-cols-4 gap-4 items-start">
+          <div class="lg:col-span-3 border border-slate-200 dark:border-slate-800 rounded-lg p-6 bg-white dark:bg-[#19191b]">
+            <div id="exam-q-body"></div>
+
+            <div class="flex items-center justify-between pt-5 mt-5 border-t border-slate-100 dark:border-slate-800">
+              <button id="exam-prev-btn" onclick="prevExamQuestion()" class="px-3 py-1.5 rounded border border-slate-200 dark:border-slate-700 text-xs font-medium text-slate-700 dark:text-slate-300 hover:bg-slate-50 dark:hover:bg-slate-800 disabled:opacity-30">
+                Sebelumnya
+              </button>
+              <button id="exam-next-btn" onclick="nextExamQuestion()" class="px-4 py-1.5 rounded bg-slate-900 text-white dark:bg-slate-100 dark:text-slate-900 hover:bg-slate-800 dark:hover:bg-slate-200 text-xs font-medium">
+                Berikutnya
+              </button>
+            </div>
+          </div>
+
+          <!-- Navigation Palette -->
+          <div class="lg:col-span-1 border border-slate-200 dark:border-slate-800 rounded-lg p-4 bg-white dark:bg-[#19191b] space-y-3">
+            <div class="flex items-center justify-between text-xs font-mono text-slate-500">
+              <span>Nomor Soal</span>
+              <span id="exam-answered-count">0 / 30</span>
+            </div>
+            <div id="exam-palette" class="grid grid-cols-5 gap-1.5"></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ------------------------------------------------------------------ -->
+    <!-- VIEW 5: RESULT -->
+    <!-- ------------------------------------------------------------------ -->
+    <section id="view-result" class="hidden space-y-6">
+      
+      <!-- Score Report -->
+      <div class="border border-slate-200 dark:border-slate-800 rounded-lg p-6 bg-white dark:bg-[#19191b] text-center space-y-4">
+        <div id="result-score-badge"></div>
+        
+        <div>
+          <span class="text-xs font-mono text-slate-500 uppercase">Estimasi Skor TOEFL ITP:</span>
+          <div class="text-5xl font-mono font-medium tracking-tight text-slate-900 dark:text-white mt-1" id="result-total-score">
+            ---
+          </div>
+          <div class="text-[11px] font-mono text-slate-400 mt-1">Rentang skala konversi: 310 - 677</div>
+        </div>
+
+        <p id="result-score-desc" class="max-w-lg mx-auto text-xs text-slate-600 dark:text-slate-300 leading-relaxed"></p>
+
+        <div id="result-breakdown" class="grid grid-cols-1 sm:grid-cols-3 gap-3 max-w-xl mx-auto text-left"></div>
+
+        <div class="flex justify-center gap-2 pt-2">
+          <button onclick="startExam()" class="px-3.5 py-2 bg-slate-900 hover:bg-slate-800 text-white dark:bg-slate-100 dark:text-slate-900 dark:hover:bg-slate-200 rounded text-xs font-medium transition-colors">
+            Ulangi Simulasi
+          </button>
+          <button onclick="switchTab('cheatsheet')" class="px-3.5 py-2 border border-slate-300 dark:border-slate-700 text-slate-700 dark:text-slate-300 hover:bg-slate-50 dark:hover:bg-slate-800 rounded text-xs font-medium transition-colors">
+            Tinjau Materi Pola
+          </button>
+        </div>
+      </div>
+
+      <!-- Question Review -->
+      <div class="border border-slate-200 dark:border-slate-800 rounded-lg p-6 bg-white dark:bg-[#19191b] space-y-4">
+        <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 pb-3 border-b border-slate-100 dark:border-slate-800">
+          <div>
+            <h3 class="font-medium text-sm text-slate-900 dark:text-white">Analisis Jawaban</h3>
+            <p class="text-xs text-slate-500">Evaluasi butir soal dan catatan pola gramatikal.</p>
+          </div>
+
+          <div class="flex items-center gap-1 font-mono text-xs">
+            <button data-review-filter="all" onclick="filterReview('all')" class="review-filter-btn px-2.5 py-1 rounded bg-slate-900 text-white dark:bg-slate-100 dark:text-slate-900">Semua (30)</button>
+            <button data-review-filter="wrong" onclick="filterReview('wrong')" class="review-filter-btn px-2.5 py-1 rounded text-slate-600 dark:text-slate-400 hover:text-slate-900">Salah</button>
+            <button data-review-filter="correct" onclick="filterReview('correct')" class="review-filter-btn px-2.5 py-1 rounded text-slate-600 dark:text-slate-400 hover:text-slate-900">Benar</button>
+          </div>
+        </div>
+
+        <div id="result-review-container" class="space-y-3"></div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ====================================================================== -->
+  <!-- FOOTER -->
+  <!-- ====================================================================== -->
+  <footer class="border-t border-slate-200 dark:border-slate-800 mt-12 py-5 text-xs text-slate-400 bg-white dark:bg-[#19191b]">
+    <div class="max-w-5xl mx-auto px-4 flex items-center justify-between">
+      <span>TOEFL Prep &bull; Modul belajar mandiri berbasis pengenalan pola kalimat.</span>
+      <span class="font-mono text-[11px]">v2.1</span>
+    </div>
+  </footer>
+
+  <script src="js/data.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>
